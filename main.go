@@ -1,5 +1,14 @@
 package main
 
+import (
+	"fmt"
+
+	"github.com/joho/godotenv"
+)
+
 func main() {
-	//Application main interface.
+	err := godotenv.Load()
+	if err != nil {
+		fmt.Println("No .env file was specified")
+	}
 }
