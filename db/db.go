@@ -3,9 +3,10 @@ package db
 import (
 	"fmt"
 	"os"
+	"pilatix-api-go/models"
 
 	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/postgres" //Postgres dialect
+	_ "github.com/jinzhu/gorm/dialects/postgres" //Postgres dialect.
 )
 
 var db *gorm.DB
@@ -23,7 +24,7 @@ func initDB() (*gorm.DB, error) {
 	return gorm.Open("postgres", connectionString)
 }
 
-//Get return database instance
+//Get return database instance.
 func Get() *gorm.DB {
 	if db == nil {
 		conn, err := initDB()
@@ -35,4 +36,11 @@ func Get() *gorm.DB {
 	}
 
 	return db
+}
+
+//Migrate will migrating model to database.
+func Migrate() {
+	Get().AutoMigrate(
+		&models.Category{},
+	)
 }
