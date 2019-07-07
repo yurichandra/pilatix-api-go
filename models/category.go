@@ -4,9 +4,9 @@ import "time"
 
 //Category represent category model
 type Category struct {
-	id        uint
-	name      string
-	createdAt time.Time
-	updatedAt time.Time
-	deletedAt *time.Time
+	ID        uint
+	Name      string
+	CreatedAt time.Time
+	UpdatedAt time.Time
+	DeletedAt *time.Time
 }
