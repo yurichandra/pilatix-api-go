@@ -24,7 +24,7 @@ func initDB() (*gorm.DB, error) {
 	return gorm.Open("postgres", connectionString)
 }
 
-//Get return database instance.
+// Get return database instance.
 func Get() *gorm.DB {
 	if db == nil {
 		conn, err := initDB()
@@ -38,9 +38,22 @@ func Get() *gorm.DB {
 	return db
 }
 
-//Migrate will migrating model to database.
+// Migrate will migrating model to database.
 func Migrate() {
 	Get().AutoMigrate(
 		&models.Category{},
 	)
+}
+
+// Drop removes exist table
+func Drop() {
+	Get().DropTableIfExists(
+		&models.Category{},
+	)
+}
+
+// Reset do migration and drop table
+func Reset() {
+	Drop()
+	Migrate()
 }
