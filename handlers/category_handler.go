@@ -14,13 +14,13 @@ import (
 
 // CategoryHandler represent controller of Category.
 type CategoryHandler struct {
-	categoryService services.CategoryService
+	categoryService *services.CategoryService
 }
 
 // NewCategoryHandler represent constructing new handler of category.
 func NewCategoryHandler(s *services.CategoryService) *CategoryHandler {
 	return &CategoryHandler{
-		categoryService: *s,
+		categoryService: s,
 	}
 }
 
@@ -29,6 +29,7 @@ func (h *CategoryHandler) GetRoutes() chi.Router {
 	r := chi.NewRouter()
 
 	r.Get("/", h.Get)
+	r.Post("/", h.Create)
 
 	return r
 }
@@ -56,4 +57,22 @@ func (h *CategoryHandler) Get(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err.Error())
 		return
 	}
+}
+
+// Create handle creating new category.
+func (h *CategoryHandler) Create(w http.ResponseWriter, r *http.Request) {
+	request := objects.CategoryRequest{}
+	if err := render.Bind(r, &request); err != nil {
+		render.Render(w, r, sendUnprocessableEntityResponse(err.Error()))
+		return
+	}
+
+	category, err := h.categoryService.Create(request.Name)
+	if err != nil {
+		render.Render(w, r, sendInternalServerErrorResponse(err.Error()))
+		return
+	}
+
+	render.Status(r, http.StatusCreated)
+	render.Render(w, r, objects.CreateCategoryResponse(category))
 }

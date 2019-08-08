@@ -26,3 +26,25 @@ func sendNotFoundResponse(message string) *errorResponse {
 		Message:    message,
 	}
 }
+
+func sendInternalServerErrorResponse(message string) *errorResponse {
+	if message == "" {
+		message = "Internal server error"
+	}
+
+	return &errorResponse{
+		HTTPStatus: http.StatusInternalServerError,
+		Message:    message,
+	}
+}
+
+func sendUnprocessableEntityResponse(message string) *errorResponse {
+	if message == "" {
+		message = "Unprocessable entity"
+	}
+
+	return &errorResponse{
+		HTTPStatus: http.StatusUnprocessableEntity,
+		Message:    message,
+	}
+}
