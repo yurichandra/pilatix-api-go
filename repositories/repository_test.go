@@ -2,10 +2,10 @@ package repositories
 
 import (
 	"fmt"
-	"pilatix-api-go/db"
 	"testing"
 
 	"github.com/jinzhu/gorm"
+	"github.com/yurichandra/pilatix-api-go/db"
 
 	"github.com/jaswdr/faker"
 	"github.com/joho/godotenv"

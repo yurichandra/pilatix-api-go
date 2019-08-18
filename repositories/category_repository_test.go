@@ -1,9 +1,10 @@
 package repositories
 
 import (
-	"pilatix-api-go/db"
-	"pilatix-api-go/models"
 	"testing"
+
+	"github.com/yurichandra/pilatix-api-go/db"
+	"github.com/yurichandra/pilatix-api-go/models"
 )
 
 func TestGetCategory(t *testing.T) {

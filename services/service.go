@@ -1,7 +1,7 @@
 package services
 
 import (
-	"pilatix-api-go/repositories"
+	"github.com/yurichandra/pilatix-api-go/repositories"
 )
 
 // NewCategoryService represent initialization of CategoryService.

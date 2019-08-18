@@ -1,7 +1,7 @@
 package mocks
 
 import (
-	"pilatix-api-go/models"
+	"github.com/yurichandra/pilatix-api-go/models"
 
 	"github.com/stretchr/testify/mock"
 )

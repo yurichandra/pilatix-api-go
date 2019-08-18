@@ -3,7 +3,8 @@ package db
 import (
 	"fmt"
 	"os"
-	"pilatix-api-go/models"
+
+	"github.com/yurichandra/pilatix-api-go/models"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres" //Postgres dialect.

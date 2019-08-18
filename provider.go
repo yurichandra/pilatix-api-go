@@ -2,9 +2,10 @@ package main
 
 import (
 	"log"
-	"pilatix-api-go/db"
-	"pilatix-api-go/repositories"
-	"pilatix-api-go/services"
+
+	"github.com/yurichandra/pilatix-api-go/db"
+	"github.com/yurichandra/pilatix-api-go/repositories"
+	"github.com/yurichandra/pilatix-api-go/services"
 )
 
 var categoryService *services.CategoryService

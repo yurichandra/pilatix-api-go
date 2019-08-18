@@ -1,7 +1,7 @@
 package objects
 
 import (
-	"pilatix-api-go/models"
+	"github.com/yurichandra/pilatix-api-go/models"
 
 	"github.com/go-chi/render"
 )

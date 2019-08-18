@@ -4,13 +4,13 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"pilatix-api-go/models"
-	"pilatix-api-go/objects"
-	"pilatix-api-go/services"
 	"strconv"
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/render"
+	"github.com/yurichandra/pilatix-api-go/models"
+	"github.com/yurichandra/pilatix-api-go/objects"
+	"github.com/yurichandra/pilatix-api-go/services"
 )
 
 // CategoryHandler represent controller of Category.

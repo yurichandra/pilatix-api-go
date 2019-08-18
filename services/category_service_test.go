@@ -1,9 +1,10 @@
 package services
 
 import (
-	"pilatix-api-go/mocks"
-	"pilatix-api-go/models"
 	"testing"
+
+	"github.com/yurichandra/pilatix-api-go/mocks"
+	"github.com/yurichandra/pilatix-api-go/models"
 
 	"github.com/stretchr/testify/assert"
 )

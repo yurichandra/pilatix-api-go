@@ -2,8 +2,9 @@ package services
 
 import (
 	"errors"
-	"pilatix-api-go/models"
-	"pilatix-api-go/repositories"
+
+	"github.com/yurichandra/pilatix-api-go/models"
+	"github.com/yurichandra/pilatix-api-go/repositories"
 )
 
 // CategoryService represent service layer of Category.

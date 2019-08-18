@@ -1,7 +1,7 @@
 package services
 
 import (
-	"pilatix-api-go/models"
+	"github.com/yurichandra/pilatix-api-go/models"
 )
 
 // CategoryServiceContract represent contract of CategoryService

@@ -1,7 +1,7 @@
 package repositories
 
 import (
-	"pilatix-api-go/models"
+	"github.com/yurichandra/pilatix-api-go/models"
 )
 
 // CategoryRepositoryContract represent contract of CategoryRepository.

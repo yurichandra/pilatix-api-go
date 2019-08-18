@@ -5,8 +5,9 @@ import (
 	"fmt"
 	"net/http"
 	"os"
-	"pilatix-api-go/db"
-	"pilatix-api-go/handlers"
+
+	"github.com/yurichandra/pilatix-api-go/db"
+	"github.com/yurichandra/pilatix-api-go/handlers"
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/render"

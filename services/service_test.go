@@ -1,8 +1,9 @@
 package services
 
 import (
-	"pilatix-api-go/repositories"
 	"testing"
+
+	"github.com/yurichandra/pilatix-api-go/repositories"
 
 	"github.com/jaswdr/faker"
 )
