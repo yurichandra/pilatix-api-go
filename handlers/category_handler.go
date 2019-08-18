@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"pilatix-api-go/models"
 	"pilatix-api-go/objects"
 	"pilatix-api-go/services"
 	"strconv"
@@ -30,6 +31,12 @@ func (h *CategoryHandler) GetRoutes() chi.Router {
 
 	r.Get("/", h.Get)
 	r.Post("/", h.Create)
+	r.Route("/{id}", func(r chi.Router) {
+		r.Use(h.Context)
+		r.Get("/", h.Find)
+		r.Patch("/", h.Update)
+		r.Delete("/", h.Delete)
+	})
 
 	return r
 }
@@ -59,6 +66,18 @@ func (h *CategoryHandler) Get(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// Find handle fetching single category.
+func (h *CategoryHandler) Find(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+	category, ok := ctx.Value(categoryCtx).(models.Category)
+	if !ok {
+		render.Render(w, r, sendUnprocessableEntityResponse(""))
+		return
+	}
+
+	render.Render(w, r, objects.CreateCategoryResponse(category))
+}
+
 // Create handle creating new category.
 func (h *CategoryHandler) Create(w http.ResponseWriter, r *http.Request) {
 	request := objects.CategoryRequest{}
@@ -75,4 +94,46 @@ func (h *CategoryHandler) Create(w http.ResponseWriter, r *http.Request) {
 
 	render.Status(r, http.StatusCreated)
 	render.Render(w, r, objects.CreateCategoryResponse(category))
+}
+
+// Update handle updating a category.
+func (h *CategoryHandler) Update(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+	category, ok := ctx.Value(categoryCtx).(models.Category)
+	if !ok {
+		render.Render(w, r, sendUnprocessableEntityResponse(""))
+		return
+	}
+
+	request := objects.CategoryRequest{}
+	if err := render.Bind(r, &request); err != nil {
+		render.Render(w, r, sendUnprocessableEntityResponse(err.Error()))
+		return
+	}
+
+	newCategory, err := h.categoryService.Update(category.ID, request.Name)
+	if err != nil {
+		render.Render(w, r, sendInternalServerErrorResponse(err.Error()))
+		return
+	}
+
+	render.Render(w, r, objects.CreateCategoryResponse(newCategory))
+}
+
+// Delete handle deleting a category
+func (h *CategoryHandler) Delete(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+	category, ok := ctx.Value(categoryCtx).(models.Category)
+	if !ok {
+		render.Render(w, r, sendUnprocessableEntityResponse(""))
+		return
+	}
+
+	err := h.categoryService.Delete(category.ID)
+	if err != nil {
+		render.Render(w, r, sendInternalServerErrorResponse(err.Error()))
+		return
+	}
+
+	render.JSON(w, r, "")
 }
