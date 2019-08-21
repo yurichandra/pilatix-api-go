@@ -1,0 +1,16 @@
+version: "3.7"
+
+services:
+  pilatix-api-go:
+    image: yurichandra/pilatix-api-go
+    container_name: pilatix-api-go
+    ports:
+      - 8000:80
+    env_file:
+      - .env
+    networks:
+      - arsenal
+
+networks:
+  arsenal:
+    external: true
