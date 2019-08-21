@@ -19,7 +19,7 @@ func main() {
 	case "serve":
 		serveHTTP()
 		break
-	case "migration":
+	case "migrate":
 		runMigration()
 	default:
 		fmt.Println("Invalid command")
